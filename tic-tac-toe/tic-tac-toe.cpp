@@ -68,6 +68,7 @@ int main()
 void drawBoard(char* space) {
     cout << "       Board:     " << endl;
     cout << "\n";
+    cout << "\n";
     cout << "      |     |     " << endl;
     cout << "   " << space[0] << "  |  " << space[1] << "  |  " << space[2] << endl;
     cout << "      |     |     " << endl;
@@ -79,6 +80,8 @@ void drawBoard(char* space) {
     cout << "      |     |     " << endl;
     cout << "   " << space[6] << "  |  " << space[7] << "  |  " << space[8] << endl;
     cout << "      |     |     " << endl;
+    cout << "\n";
+    cout << "\n";
 
 
 }
