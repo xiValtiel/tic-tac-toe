@@ -5,21 +5,20 @@
 using namespace std;
 
 string Player1, Player2;
+char space[9] = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
+char player_symbol1 = 'x';
+char player_symbol2 = 'o';
+bool isRunning = true;
 
 void drawBoard(char *space);
 void player1Move(char *space, char player_symbol1);
 void player2Move(char *space, char player_symbol2);
-void checkWin(char *space, char player_symbol1, char player_symbol2);
-void checkDraw(char* space, char player_symbol1, char player_symbol2);
+bool checkWin(char *space, char player_symbol1, char player_symbol2);
 
 
 
 int main()
 {
-    char space[9] = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
-    char player_symbol1 = 'x';
-    char player_symbol2 = 'o';
-    bool isRunning = true;
 
 
     cout << "Hello World!\n";
@@ -48,8 +47,15 @@ int main()
 
     while (isRunning) {
         player1Move(space, player_symbol1);
+        if (checkWin(space, player_symbol1, player_symbol2)) {
+            isRunning = false;
+            break;
+        }
         player2Move(space, player_symbol2);
-
+        if (checkWin(space, player_symbol1, player_symbol2)) {
+            isRunning = false;
+            break;
+        }
     }
 
 
@@ -128,10 +134,37 @@ void player2Move(char* space, char player_symbol2) {
 
     } while (p2_move < 0 || p2_move > 8 || space[p2_move] != ' ');
 }
-void checkWin(char* space, char player_symbol1, char player_symbol2) {
-    do {
-    } while (false);
-}
-void checkDraw(char* space, char player_symbol1, char player_symbol2) {
+bool checkWin(char* space, char player_symbol1, char player_symbol2) {
+    if (space[0] != ' ' && space[0] == space[1] && space[1] == space[2]) {
+        space[0] == player_symbol1 ? cout << "[ " << Player1 << " ], WINS! \n"  : cout << "[ " << Player2 << " ], WINS! \n";
+    }
+    else if (space[3] != ' ' && space[3] == space[4] && space[4] == space[5]) {
+        space[3] == player_symbol1 ? cout << "[ " << Player1 << " ], WINS! \n" : cout << "[ " << Player2 << " ], WINS! \n";
+    }
+    else if (space[6] != ' ' && space[6] == space[7] && space[7] == space[8]) {
+        space[6] == player_symbol1 ? cout << "[ " << Player1 << " ], WINS! \n" : cout << "[ " << Player2 << " ], WINS! \n";
+    }
+    else if (space[0] != ' ' && space[0] == space[3] && space[3] == space[6]) {
+        space[0] == player_symbol1 ? cout << "[ " << Player1 << " ], WINS! \n" : cout << "[ " << Player2 << " ], WINS! \n";
+    }
+    else if (space[1] != ' ' && space[1] == space[4] && space[4] == space[7]) {
+        space[1] == player_symbol1 ? cout << "[ " << Player1 << " ], WINS! \n" : cout << "[ " << Player2 << " ], WINS! \n";
+    }
+    else if (space[2] != ' ' && space[2] == space[5] && space[5] == space[8]) {
+        space[2] == player_symbol1 ? cout << "[ " << Player1 << " ], WINS! \n" : cout << "[ " << Player2 << " ], WINS! \n";
+    }
+    else if (space[0] != ' ' && space[0] == space[4] && space[4] == space[8]) {
+        space[0] == player_symbol1 ? cout << "[ " << Player1 << " ], WINS! \n" : cout << "[ " << Player2 << " ], WINS! \n";
+    }
+    else if (space[2] != ' ' && space[2] == space[4] && space[4] == space[6]) {
+        space[2] == player_symbol1 ? cout << "[ " << Player1 << " ], WINS! \n" : cout << "[ " << Player2 << " ], WINS! \n";
+    }
+    else if (space[0] != ' ' && space[1] != ' ' && space[2] != ' ' && space[3] != ' ' && space[4] != ' ' && space[5] != ' ' && space[6] != ' ' && space[7] != ' ' && space[8] != ' ') {
+        cout << "[ DRAW! ]";
+    }
+    else {
+        return false;
+    }
 
+    return true;
 }
