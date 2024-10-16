@@ -105,6 +105,7 @@ void player1Move(char* space, char player_symbol1) {
         }
         else if (space[p1_move] == ' ') {
             space[p1_move] = player_symbol1;
+            system("cls");
             drawBoard(space);
             break;
         }
@@ -131,6 +132,7 @@ void player2Move(char* space, char player_symbol2) {
         }
         else if (space[p2_move] == ' ') {
             space[p2_move] = player_symbol2;
+            system("cls");
             drawBoard(space);
             break;
         }
